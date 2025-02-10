@@ -1,0 +1,22 @@
+@Library('jenkins-lib@v0.1.18') _
+
+pipeline {
+    agent any
+
+    environment {
+        // Declare environment variables here
+        MY_ENV_VAR = 'some-value'
+        ANOTHER_ENV_VAR = 'another-value'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    // Passing environment variables to the buildImage method
+                    buildImage([ env.MY_ENV_VAR, env.ANOTHER_ENV_VAR ])
+                }
+            }
+        }
+    }
+}
